@@ -11,4 +11,4 @@
 ### Adaptado:           MATHEUS FERREIRA DE SOUZA  -MAR, 02nd 2026 ###
 ######################################################################
 
-scp -r meteoro@172.16.0.110:/media/produtos/atc/202602/2026022812 .
+scp -r meteoro@172.16.0.110:/media/produtos/atc/202603/2026030212 .
