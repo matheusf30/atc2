@@ -8,10 +8,19 @@
 ###                                                                ### 
 ### Mudança do Satélite GOES16 para GOES19 no dia 07/04/2025       ###
 ###                                                                ### 
-### Elaborado:          MARIO QUADRO       	       -FEB, 26th 2023 ###
+### Elaborado:          MARIO QUADRO               -FEB, 26th 2023 ###
 ### Adaptado:           MATHEUS FERREIRA DE SOUZA  -MAR, 02nd 2026 ###
 ######################################################################
-#
+
+### Verificação de Argumentos Repassados
+if [ -z "$1" ] || [ -z "$2" ]; then
+    echo "Erro: Faltam argumentos."
+    echo "Uso correto: $0 YYYYMMDDHH (inicial) YYYYMMDDHH (final)"
+    exit 1
+fi
+# Captura os argumentos
+DATA_INICIAL=$1
+DATA_FINAL=$2
 export LC_NUMERIC=en_US.UTF-8
 #
 ###----------------------------------------------------------------###
@@ -42,19 +51,17 @@ mt=(' ' 'JAN' 'FEB' 'MAR' 'APR' 'MAY' 'JUN' 'JUL' 'AUG' 'SEP' 'OCT' 'NOV' 'DEC')
 ###--------------------------------------------------------------------###
 #
 #
-# Define Data Inicial
-#
-ai=2026
-mi=03
-di=02
-hi=00
-#
-# Define Data Final
-#
-af=2026
-mf=03
-df=02
-hf=23
+# Define Data Inicial via Argumento 1 (Ex: AAAA MM DD HH)
+ai=${DATA_INICIAL:0:4}
+mi=${DATA_INICIAL:4:2}
+di=${DATA_INICIAL:6:2}
+hi=${DATA_INICIAL:8:2}
+
+# Define Data Final via Argumento 2 (Ex: AAAA MM DD HH)
+af=${DATA_FINAL:0:4}
+mf=${DATA_FINAL:4:2}
+df=${DATA_FINAL:6:2}
+hf=${DATA_FINAL:8:2}
 #
 # Define Intervalo em horas para pegar as imagens
 #
