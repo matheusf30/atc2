@@ -13,14 +13,15 @@
 ######################################################################
 
 ### Verificação de Argumentos Repassados
-if [ -z "$1" ] || [ -z "$2" ]; then
+if [ -z "$1" ] || [ -z "$2" ]|| [ -z "$3" ]; then
     echo "Erro: Faltam argumentos."
-    echo "Uso correto: $0 YYYYMMDDHH (inicial) YYYYMMDDHH (final)"
+    echo "Uso correto: $0 YYYYMMDDHH (inicial) YYYYMMDDHH (final) HH (intervalo)"
     exit 1
 fi
 # Captura os argumentos
 DATA_INICIAL=$1
 DATA_FINAL=$2
+DATA_INTERVALO=$3 
 export LC_NUMERIC=en_US.UTF-8
 #
 ###----------------------------------------------------------------###
@@ -28,7 +29,7 @@ export LC_NUMERIC=en_US.UTF-8
 ###----------------------------------------------------------------###
 #
 path_scr=$HOME/matheus/atc2
-path_arq=$path_scr/images
+path_arq=$path_scr/images/"$DATA_INICIAL"_"$DATA_INTERVALO"_"$DATA_FINAL"
 #
 mkdir -p $HOME/matheus/atc2
 mkdir -p $path_scr
@@ -65,7 +66,7 @@ hf=${DATA_FINAL:8:2}
 #
 # Define Intervalo em horas para pegar as imagens
 #
-inc=1
+inc=$DATA_INTERVALO # Intervalo em horas (1, 12, 24...)
 #
 #
 ##--------------------------------------------------------------------###
